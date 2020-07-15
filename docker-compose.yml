@@ -9,8 +9,8 @@ services:
         ports: 
             - "6379:6379"
         networks: 
-            - alm-network
+            - asg-network
 
 networks: 
-    alm-network:
+    asg-network:
         driver: bridge
