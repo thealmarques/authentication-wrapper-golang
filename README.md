@@ -2,7 +2,7 @@
 
 This project is a POC of a service wrapper that implements JWT authentication in backend services without changing anything in those services. 
 
-Status: **In Development**
+> Status: **In Development**
 
 ## How
 
