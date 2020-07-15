@@ -7,7 +7,7 @@ type LoginService interface {
 	Login(username string, password string) bool
 }
 
-// LoginController - Login controller interface
-type LoginController interface {
-	Login(ctx *gin.Context) string
+// AuthenticationController - Login controller interface
+type AuthenticationController interface {
+	Login(ctx *gin.Context)
 }

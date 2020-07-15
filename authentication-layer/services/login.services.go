@@ -11,6 +11,7 @@ type loginService struct {
 
 // CreateLoginService - Creates login service (static usernames for now)
 func CreateLoginService() interfaces.LoginService {
+	// TODO - connect to DB to check credentials
 	return &loginService{
 		authorizedUsername: "test",
 		authorizedPassword: "password",

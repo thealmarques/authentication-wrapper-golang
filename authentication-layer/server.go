@@ -2,8 +2,8 @@ package main
 
 import (
 	"authentication-layer/controllers"
+	"authentication-layer/middlewares"
 	"authentication-layer/services"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,16 +18,15 @@ var (
 func main() {
 	router := gin.Default()
 
-	router.POST("/login", func(ctx *gin.Context) {
-		token := authenticationController.Login(ctx)
-		if token != "" {
-			ctx.JSON(http.StatusOK, gin.H{
-				"token": token,
-			})
-		} else {
-			ctx.JSON(http.StatusUnauthorized, gin.H{"error": "User is not valid"})
-		}
-	})
+	router.POST("/*login", authenticationController.Login)
+
+	// JWT Authorization Middleware applies to "/api" only.
+	apiRoutes := router.Group("/api", middlewares.AuthorizeJWT())
+	{
+		apiRoutes.GET("/test", func(ctx *gin.Context) {
+			ctx.JSON(200, "Token is valid")
+		})
+	}
 
 	router.Run("0.0.0.0:9000")
 }
